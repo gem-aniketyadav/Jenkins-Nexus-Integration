@@ -1,38 +1,63 @@
-node {  
-    stage('Install') { 
-        nodejs('NodeJS') {
-            sh 'npm install'
-            sh 'ng build -prod'
-        }
-    }
-    stage('Build Angular'){
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gem-aniketyadav/Jenkins-Nexus-Integration.git']]])
-                sh 'npm install'
-                echo"success install Angular"
-    }
-    stage('Build docker image'){
-                script{
-                    sh 'docker build -t demo_repo/Jenkins-demo:latest .'
-                    echo"Build Successfull"
-                }
-    }
-}
-//     stage('Push image to Nexus'){
-//             steps{
-//                 script{
-//                    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
-//                    sh 'nexus login -u admin -p ${admin}'
+node {
 
-// }
-//                    sh 'docker push javatechie/devops-integration'
-//                 }
-//             }
-//         }
-//     stage('Deploy to k8s'){
-//             steps{
-//                 script{
-//                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
-//                 }
-//             }
-//         }
-// }
+    stage('Checkout') {
+
+       
+
+        deleteDir()
+
+        checkout scm
+
+    }
+
+
+
+    stage('NPM Install') {
+
+
+
+        nodejs('NodeJs') {
+
+    // some block
+
+    sh 'npm install'
+
+    sh 'ng build --prod'
+
+    sh 'docker build -t demo:latest .'
+
+}
+
+       
+
+    }
+
+
+
+
+    // stage('Lint') {
+
+    //     sh 'ng lint'
+
+    // }
+
+
+
+    // stage('Build') {
+
+    //     milestone()
+
+    //     sh 'ng build --prod'
+
+    // }
+
+
+
+
+    stage('Deploy') {
+
+        echo "Deploying..."
+
+    }
+
+}
