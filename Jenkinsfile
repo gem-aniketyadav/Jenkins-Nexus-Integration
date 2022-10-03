@@ -6,19 +6,15 @@ node {
     //     }
     // }
     stage('Build Angular'){
-            steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gem-aniketyadav/Jenkins-Nexus-Integration.git']]])
                 sh 'npm install'
                 echo"success install Angular"
-            }
     }
     stage('Build docker image'){
-            steps{
                 script{
                     sh 'docker build -t demo_repo/Jenkins-demo:latest .'
                     echo"Build Successfull"
                 }
-            }
     }
 }
 //     stage('Push image to Nexus'){
