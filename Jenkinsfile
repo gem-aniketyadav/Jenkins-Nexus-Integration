@@ -1,21 +1,29 @@
 node {
 
-    // stage('Checkout') {
+    stage('Checkout') {
 
        
 
-    //     deleteDir()
+        deleteDir()
 
-    //     checkout scm
+        checkout scm
 
-    // }
+    }
+
+
+
     stage('NPM Install') {
+
+
+
         nodejs('NodeJs') {
 
     // some block
 
     sh 'npm install'
+
     sh 'ng build --prod'
+
     sh 'docker build -t demo:latest .'
 
 }
