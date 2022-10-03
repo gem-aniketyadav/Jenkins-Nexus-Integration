@@ -1,10 +1,10 @@
 node {  
-    stage('Install') { 
-        nodejs('NodeJs') {
-            sh 'npm install'
-            sh 'ng build -prod'
-        }
-    }
+    // stage('Install') { 
+    //     nodejs('NodeJs') {
+    //         sh 'npm install'
+    //         sh 'ng build -prod'
+    //     }
+    // }
     stage('Build Angular'){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gem-aniketyadav/Jenkins-Nexus-Integration.git']]])
