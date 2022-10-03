@@ -45,4 +45,4 @@ node {
 //                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
 //                 }
 
-// }
+}
