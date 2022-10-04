@@ -42,4 +42,8 @@ node {
 //                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
 //                 }
 
+    kubeconfig(credentialsId: 'myconfig', serverUrl: 'https://127.0.0.1:54385') {
+        kubectl apply -f deploymentservice.yaml .
+}
+
 }
