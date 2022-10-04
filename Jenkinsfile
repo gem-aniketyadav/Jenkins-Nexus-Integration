@@ -1,7 +1,5 @@
 node {
     environment{
-        USERNAME="admin"
-        PASSWORD="admin"
         REPO_NAME="demo_repo"
         REPOSITORY_URL="http://127.0.0.1:9001/repository/demo_repo/" 
     }
@@ -28,14 +26,14 @@ node {
 
         bat 'docker build -f Dockerfile -t jenkins-demo:latest .'
         bat 'docker images' 
-        bat 'docker login -u ${USERNAME} -p ${PASSWORD} -U ${REPOSITORY_URL}
+        bat 'docker login -u "admin" -p "admin" -U ${REPOSITORY_URL}
         bat 'docker tag jenkins-demo 127.0.0.1:9001/demo_repo/jenkins-demo'
         echo "Build Successfull"
     }
 
     stage('Push image to Nexus'){
                    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
-                   sh 'nexus3 login -u ${USERNAME} -p ${PASSWORD}' -U ${REPOSITORY_URL}
+                   sh 'nexus3 login -u "admin" -p "admin" -U ${REPOSITORY_URL}
 
 }
                    sh 'docker push ${REPOSITORY_URL} '
