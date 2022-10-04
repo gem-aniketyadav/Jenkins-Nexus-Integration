@@ -33,10 +33,8 @@ node {
 
     stage('Push image to Nexus'){
                 //    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) 
-                {
+                
                    bat 'docker login -u admin -p admin http://127.0.0.1:9001/repository/demo_repo/'
-
-}
                    bat 'docker push ${REPOSITORY_URL} '
                 }
 
