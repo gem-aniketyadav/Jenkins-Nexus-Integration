@@ -1,7 +1,7 @@
 node {
     environment{
-        REPO_NAME="demo_repo"
-        REPOSITORY_URL="http://127.0.0.1:9001/repository/demo_repo/" 
+        REPO_NAME='demo_repo'
+        REPOSITORY_URL='http://127.0.0.1:9001/repository/demo_repo/'
     }
 
     stage('Checkout') {
@@ -26,7 +26,7 @@ node {
 
         bat 'docker build -f Dockerfile -t jenkins-demo:latest .'
         bat 'docker images' 
-        bat 'docker login -u admin -p admin ${REPOSITORY_URL}'
+        bat 'docker login -u admin -p admin $ {REPOSITORY_URL} '
         bat 'docker tag jenkins-demo 127.0.0.1:9001/demo_repo/jenkins-demo'
         echo "Build Successfull"
     }
