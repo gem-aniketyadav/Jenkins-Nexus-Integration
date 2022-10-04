@@ -3,8 +3,7 @@ node {
         USERNAME="admin"
         PASSWORD="admin"
         REPO_NAME="demo_repo"
-        IMAGE_TAG="latest"
-        REPOSITORY_URL="" 
+        REPOSITORY_URL="http://127.0.0.1:9001/repository/demo_repo/" 
     }
 
     stage('Checkout') {
@@ -29,18 +28,18 @@ node {
 
         bat 'docker build -f Dockerfile -t jenkins-demo:latest .'
         bat 'docker images' 
-        // sh 'docker login -u ${USERNAME} -p ${PASSWORD} -${REPOSITORY_URL}
-        // sh 'docker tag Jenkins-demo 15.206.81.210:9001/docker-hosted/devopsschool'
+        bat 'docker login -u ${USERNAME} -p ${PASSWORD} -U ${REPOSITORY_URL}
+        bat 'docker tag jenkins-demo 127.0.0.1:9001/demo_repo/jenkins-demo'
         echo "Build Successfull"
     }
 
-//     stage('Push image to Nexus'){
-//                    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
-//                    sh 'nexus3 login -u ${USERNAME} -p ${PASSWORD}' -U ${REPOSITORY_URL}
+    stage('Push image to Nexus'){
+                   withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
+                   sh 'nexus3 login -u ${USERNAME} -p ${PASSWORD}' -U ${REPOSITORY_URL}
 
-// }
-//                    sh 'docker push ${REPOSITORY_URL} '
-//                 }
+}
+                   sh 'docker push ${REPOSITORY_URL} '
+                }
 
 //     stage('Deploy to k8s'){
 //                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
