@@ -41,9 +41,10 @@ node {
 //     stage('Deploy to k8s'){
 //                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
 //                 }
-
-    kubeconfig(credentialsId: 'myconfig', serverUrl: 'https://127.0.0.1:54385') {
+    stage('Deploy to k8s'){
+        kubeconfig(credentialsId: 'myconfig', serverUrl: 'https://127.0.0.1:54385') {
         bat 'kubectl apply -f deploymentservice.yaml'
+    }
     }
 
 }
