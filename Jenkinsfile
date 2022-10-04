@@ -27,7 +27,7 @@ node {
 
     stage('Build docker image'){
 
-        bat 'docker build -f Dockerfile -t demo_repo/Jenkins-demo:latest .'
+        bat 'docker build -f Dockerfile -t jenkins-demo:latest .'
         bat 'docker images' 
         // sh 'docker login -u ${USERNAME} -p ${PASSWORD} -${REPOSITORY_URL}
         // sh 'docker tag Jenkins-demo 15.206.81.210:9001/docker-hosted/devopsschool'
