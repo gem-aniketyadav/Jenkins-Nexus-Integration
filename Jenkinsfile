@@ -33,10 +33,10 @@ node {
 
     stage('Push image to Nexus'){
                    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
-                   sh 'nexus3 login -u "admin" -p "admin" -U ${REPOSITORY_URL}
+                   bat 'nexus3 login -u 'admin' -p 'admin' ${REPOSITORY_URL}
 
 }
-                   sh 'docker push ${REPOSITORY_URL} '
+                   bat 'docker push ${REPOSITORY_URL} '
                 }
 
 //     stage('Deploy to k8s'){
