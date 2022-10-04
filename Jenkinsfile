@@ -8,6 +8,8 @@ node {
     }
 
     stage('Checkout') {
+        dir(Jenkins-Nexus-Integration)
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gem-aniketyadav/Jenkins-Nexus-Integration.git']]])
         deleteDir()
         checkout scm
     }
@@ -26,10 +28,10 @@ node {
 
     stage('Build docker image'){
 
-        // sh 'docker build -t demo_repo/Jenkins-demo:latest .'
-        // sh 'docker images'
+        sh 'docker build -f Dockerfile -t demo_repo/Jenkins-demo:latest .'
+        sh 'docker images' 
         // sh 'docker login -${USERNAME} -${PASSWORD} -${REPOSITORY_URL}
-        // sh 'docker tag devopsschool 15.206.81.210:9001/docker-hosted/devopsschool'
+        // sh 'docker tag Jenkins-demo 15.206.81.210:9001/docker-hosted/devopsschool'
         echo "Build Successfull"
     }
 
