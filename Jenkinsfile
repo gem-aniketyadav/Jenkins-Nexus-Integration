@@ -8,7 +8,6 @@ node {
     }
 
     stage('Checkout') {
-        dir(Jenkins-Nexus-Integration)
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gem-aniketyadav/Jenkins-Nexus-Integration.git']]])
         // deleteDir()
         // checkout scm
