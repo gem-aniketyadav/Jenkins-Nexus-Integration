@@ -35,7 +35,7 @@ node {
                 //    withCredentials([string(credentialsId: 'admin', variable: 'admin')]) 
                 
                    bat 'docker login -u admin -p admin http://127.0.0.1:9001/repository/demo_repo/'
-                   bat 'docker push ${REPOSITORY_URL} '
+                   bat 'docker push 127.0.0.1:9001/demo_repo/jenkins-demo '
                 }
 
 //     stage('Deploy to k8s'){
