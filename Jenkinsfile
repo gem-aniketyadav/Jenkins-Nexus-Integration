@@ -18,7 +18,7 @@ node {
     stage('NPM Install') {
         nodejs('NodeJs') {
             bat 'npm install'
-            bat 'ng build'
+            bat 'ng build --prod'
             echo "Successfully Installed Angular"
 
 }
